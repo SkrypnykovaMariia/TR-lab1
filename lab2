@@ -1,0 +1,41 @@
+using System;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        public static double x1 = 0, x2 = 0;
+
+        public static double M(double prob, double profit1, double profit2)
+        {
+            return prob*profit1 + (1-prob)*profit2;
+        }
+
+        public static double V(double prob, double profit1, double profit2)
+        {
+            return prob * Math.Pow((profit1 - M(prob, profit1, profit2)), 2) + (1 - prob) * Math.Pow((profit1 - M(1-prob, profit1, profit2)), 2);
+        }
+
+        public static double Sigma(double prob, double profit1, double profit2)
+        {
+            return Math.Sqrt(V(prob, profit1, profit2));
+        }
+
+        static void Main(string[] args)
+        {
+            x1 = Sigma(0.99, 100, 0);
+            x2 = Sigma(0.5, 520, -2500);
+
+            if(x1<x2)
+            {
+                Console.WriteLine("Краще покласти грошi в банк");
+            }
+            else if(x1>x2)
+            {
+                Console.WriteLine("Краще iнвестувати грошi в АТ");
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
