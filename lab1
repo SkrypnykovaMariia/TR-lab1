@@ -30,6 +30,8 @@ namespace CSharp_Shell
            {
                Console.WriteLine("Можна іти в ліс");
            }
+           
+           Console.ReadKey();
         }
     }
 }
